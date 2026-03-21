@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+.github
+
+# Documentation
+*.md
+README.md
+LICENSE
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies (will be installed in container)
+node_modules/
+target/
+
+# Build artifacts
+build/
+dist/

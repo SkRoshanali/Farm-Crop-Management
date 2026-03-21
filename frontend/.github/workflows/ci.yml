@@ -1,0 +1,43 @@
+name: CI Pipeline – Farm Crop Frontend
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  # ─────────────────────────────────────────
+  # JOB 1 — Frontend only (React)
+  # ─────────────────────────────────────────
+  build-and-test:
+    name: Build & Test React App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+        env:
+          REACT_APP_API_BASE_URL: http://localhost:8080/api
+
+      - name: Run Tests
+        run: npm test -- --watchAll=false --passWithNoTests
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: build/

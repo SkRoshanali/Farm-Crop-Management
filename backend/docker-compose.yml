@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: farm_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-Roshan#099}
+      MYSQL_DATABASE: ${DB_NAME:-farm_crop_db}
+      MYSQL_USER: ${DB_USERNAME:-farmuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-Roshan#099}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-changeme}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: farm_app
+    ports:
+      - "9090:9090"
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      DB_URL: jdbc:mysql://mysql:3306/${DB_NAME:-farm_crop_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-Roshan#099}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local

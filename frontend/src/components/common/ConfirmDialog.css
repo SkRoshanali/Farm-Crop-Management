@@ -1,0 +1,10 @@
+.confirm { text-align: center; padding: 8px 0; }
+.confirm__icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--red-100); color: var(--red-500);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.confirm__title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.confirm__msg   { color: var(--gray-600); font-size: 14px; margin-bottom: 24px; }
+.confirm__actions { display: flex; gap: 12px; justify-content: center; }

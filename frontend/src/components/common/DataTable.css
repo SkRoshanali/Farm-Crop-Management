@@ -1,0 +1,56 @@
+.dt-wrapper { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.dt-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--gray-200);
+  flex-wrap: wrap; gap: 12px;
+}
+.dt-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--gray-100); border-radius: var(--radius-sm);
+  padding: 8px 14px; flex: 1; max-width: 320px;
+}
+.dt-search input {
+  border: none; background: transparent; font-size: 14px;
+  color: var(--gray-900); width: 100%; outline: none;
+}
+.dt-count { font-size: 13px; color: var(--gray-500); white-space: nowrap; }
+
+.dt-scroll { overflow-x: auto; }
+.dt { width: 100%; border-collapse: collapse; font-size: 14px; }
+.dt thead th {
+  background: var(--gray-50); padding: 12px 16px;
+  text-align: left; font-size: 12px; font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase; color: var(--gray-600);
+  border-bottom: 1px solid var(--gray-200); white-space: nowrap;
+  user-select: none;
+}
+.dt-th--sortable { cursor: pointer; }
+.dt-th--sortable:hover { background: var(--gray-100); }
+.dt-th--sortable span, .dt-th--sortable svg { vertical-align: middle; }
+.dt tbody td {
+  padding: 13px 16px; border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-800); vertical-align: middle;
+}
+.dt tbody tr:last-child td { border-bottom: none; }
+.dt tbody tr:hover td { background: var(--green-50); }
+.dt-actions { display: flex; gap: 6px; flex-wrap: nowrap; }
+.dt-loading, .dt-empty { text-align: center; padding: 48px; color: var(--gray-400); font-size: 14px; }
+.dt-spinner {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 3px solid var(--gray-200); border-top-color: var(--green-500);
+  animation: spin .7s linear infinite; margin: 0 auto 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.dt-pagination {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 16px; border-top: 1px solid var(--gray-200); flex-wrap: wrap;
+}
+.dt-pagination button {
+  padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;
+  background: var(--gray-100); color: var(--gray-700);
+  transition: var(--transition); border: 1px solid var(--gray-200);
+}
+.dt-pagination button:hover:not(:disabled) { background: var(--green-600); color: white; border-color: var(--green-600); }
+.dt-pagination button:disabled { opacity: .4; cursor: not-allowed; }
+.dt-page--active { background: var(--green-700) !important; color: white !important; border-color: var(--green-700) !important; }

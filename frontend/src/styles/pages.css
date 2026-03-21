@@ -1,0 +1,6 @@
+.page { display: flex; flex-direction: column; gap: 20px; }
+.page__header {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.page__title { font-size: 24px; font-weight: 800; color: var(--gray-900); }
+.page__sub   { font-size: 14px; color: var(--gray-500); margin-top: 2px; }
